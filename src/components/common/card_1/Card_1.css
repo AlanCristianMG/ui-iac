@@ -1,0 +1,97 @@
+/* From Uiverse.io by alexruix */
+.card_1 {
+    width: 35dvw;
+    /* height: 254px; */
+    border-radius: 5px;
+    background: var(--white-color);
+    position: relative;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--light-gray);
+    transition: 0.5s ease-out;
+    overflow: visible;
+
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    font-weight: 750;
+}
+
+.card_1-details {
+    color: black;
+    height: 100%;
+    gap: .5em;
+    display: grid;
+    place-content: center;
+}
+
+.card_1-button {
+    transform: translate(-50%, 125%);
+    width: 60%;
+    border-radius: 1rem;
+    border: none;
+    background-color: var(--light-gray);
+    color: #fff;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    opacity: 0;
+    transition: 0.3s ease-out;
+}
+
+.card_1-text-body {
+    color: rgb(134, 134, 134);
+}
+
+/*Text*/
+.card_1-text-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/*Hover*/
+.card_1 {
+    border-color: var(--light-gray);
+    box-shadow: 0 4px 18px 0 var(--light-gray);
+}
+
+.card_1 .card_1-button {
+    width: 12dvw;
+    /* height: 10dvh; */
+    font-size: 1.7rem;
+    transform: translate(95%, -230%);
+    opacity: 1;
+    font-family: 'Oswald';
+    font-weight: 700;
+}
+
+.card_1-button:hover {
+    transform: translate(110%, -270%);
+}
+
+@media(max-width: 1330px) {
+    .card_1{
+        width: 45dvw;
+    }
+    .card_1 .card_1-button{
+        width: 11dvw;
+        font-size: 1.3rem;
+        transform: translate(170%, -270%);
+        font-weight: 450;
+    }
+    .card_1-button:hover {
+        transform: translate(190%, -300%);
+    }
+}   
+@media(max-width: 1020px){
+    .card_1{
+        margin: auto;
+        width: 80dvw;
+        font-size: 1.4rem;
+    }
+    .card_1 .card_1-button{
+        transform: translate(-50%, 90%);
+        width: 25dvw;
+    }
+}

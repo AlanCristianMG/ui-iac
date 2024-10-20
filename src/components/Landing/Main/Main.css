@@ -1,0 +1,238 @@
+main {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 60dvw 40dvw;
+    padding-bottom: 0dvw;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    padding: 0 1dvw 0 10dvw;
+}
+
+.brand-text>h1 {
+    font-family: "Oswald", sans-serif;
+    font-weight: 700;
+    font-size: 6rem;
+    margin: 0;
+}
+
+.brand-text h1:first-child {
+    color: var(--light-gray);
+}
+
+.brand-text h1 {
+    color: var(--strong-gray);
+}
+
+.brand-img {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 3dvw 0;
+}
+
+.card-img {
+    width: 40dvw;
+    border-radius: 20px 0 0 20px;
+    background-color: var(--strong-gray);
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.brand-img h1 {
+    font-family: 'Oswald';
+    font-weight: 700;
+    margin: 0;
+    color: var(--strong-gray);
+    font-size: 2.7rem;
+}
+
+.card-img img {
+    width: 35dvw;
+    filter: drop-shadow(rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px);
+}
+
+/* ESTILOS DE LAS SECCIONES */
+
+.main-sections {
+    /* background-color: aqua; */
+    display: grid;
+    grid-template-rows: auto auto auto auto auto;
+    margin: 12dvh 0 0 0;
+    width: 100dvw;
+}
+
+.main-sections>h1 {
+    font-family: 'Oswald';
+    color: var(--strong-gray);
+    font-size: clamp(3.5rem, 4.5rem, 5rem);
+}
+
+.main-sections>p {
+    font-family: 'Nunito';
+    width: 60dvw;
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: clamp(1.1rem, 1.2rem, 1.5rem);
+    color: var(--strong-gray);
+}
+
+.main-sections>img {
+    width: 40dvw;
+    margin: 0 auto;
+}
+
+.main-sections>section {
+    background-color: var(--white-color);
+    margin: 10dvh 0;
+    /* background-color: aqua; */
+}
+
+.main-sections>section>div>h1 {
+    font-family: 'Oswald';
+    font-size: clamp(2.5rem, 3rem, 4rem);
+    color: var(--light-gray);
+}
+
+.main-sections>section>div>p {
+    font-family: 'Nunito';
+    font-weight: 800;
+    font-size: clamp(1.3rem, 1.4rem, 1.7rem);
+    color: var(--white-color);
+}
+
+#about {
+    display: flex;
+    flex-direction: column;
+    gap: 5dvh;
+}
+
+#about>.mision,
+.values {
+    padding: 1dvh 10dvw;
+    margin-right: 10dvw;
+    border-radius: 0 10px 10px 0;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    justify-content: flex-start;
+    background-color: var(--strong-gray);
+}
+
+#about>.vision {
+    margin-left: 10dvw;
+    border-radius: 10px 0 0 10px;
+    background-color: var(--strong-gray);
+    padding: 0dvw 10dvw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.vision img {
+    width: 15dvw;
+}
+.values{
+    padding: 5dvh 10dvw;
+}
+.values>.valores>.val {
+    margin: 1dvw;
+    font-family: 'Oswald';
+    color: var(--white-color);
+    background-color: var(--light-gray);
+    padding: 10px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    border-radius: 10px;
+    width: 20dvw+20px;
+}
+
+.valores {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto auto;
+}
+
+#contact{
+    width: 100dvw;
+    background-color:white;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;   
+    margin: 0;
+    padding-bottom: 5dvh; 
+}
+#contact>h1{
+    font-family: 'Oswald';
+    color: var(--strong-gray);
+    font-size: 4rem;
+    /* background-color: antiquewhite; */
+}
+#contact>form{
+    padding: 2dvh 25dvw;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 3dvw;
+}
+
+.inp{
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 20px;
+    border-color: rgb(169, 169, 169);
+}
+.inp>input, .inp>button{
+    width: 25dvw;
+    height: 30px;
+    border-radius: 10px;
+
+}
+.inp button{
+    background-color: var(--strong-gray);
+    color: var(--white-color);
+    border: solid var(--strong-gray);
+    font-family: 'Oswald';
+    font-weight: 600;
+    font-size: 1.5rem;
+    height: 50px;
+}
+#contact textarea{
+    width: 30dvw;
+    border-radius: 10px;
+}
+
+@media(max-width:1330px) {
+    .brand-text {
+        padding-left: 4dvw;
+    }
+}
+
+@media(max-width: 1020px) {
+    main {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+    }
+
+    .brand-text {
+        /* background-color: aqua; */
+        /* margin: auto; */
+
+    }
+
+    .brand-text>h1 {
+        font-size: 6.8rem;
+    }
+
+    .brand-img {
+        padding: 10dvh 0;
+    }
+
+    .brand-img .card-img {
+        width: 90dvw;
+    }
+
+    .brand-img .card-img img {
+        width: 85dvw;
+    }
+}

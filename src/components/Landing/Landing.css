@@ -1,0 +1,18 @@
+.land-container {
+    width: 100dvw;
+    /* height: 100dvh; */
+    display: grid;
+    grid-template-rows:10dvh auto auto;
+}
+
+header {
+    background-color: var(--white-color);
+}
+
+main {
+    background-color: var(--white-color);
+}
+
+footer {
+    background-color: var(--black-color);
+}
