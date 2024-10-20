@@ -51,7 +51,7 @@ function Main() {
           <Card_1
             text={data.text}
             textButton={"Start now!"}
-            target={"https://192.168.131.1:3000/"}
+            target={"/auth"}
           />
         </div>
       </div>

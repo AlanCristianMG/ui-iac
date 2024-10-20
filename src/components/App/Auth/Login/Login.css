@@ -1,0 +1,62 @@
+/* Animación para el formulario */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-container {
+    position: fixed;
+    top: 15dvh;
+    left: 34dvw;
+    right: 34dvw;
+    width: 32dvw;
+    height: 70dvh;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: var(--white-color);
+    animation: slideIn 0.8s ease-out; /* Agregar animación al cargar */
+}
+
+.header-form {
+    display: flex;
+    height: 15%;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1.1rem, 1.3rem, 1.3rem);
+}
+
+.body-form {
+    height: 78%;
+    padding: 3.5% 3.5dvw;
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.body-form > h1 {
+    margin: 0 auto;
+    font-size: 1.2rem;
+    padding: 0;
+    height: 30px;
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out; /* Transiciones */
+}
+
+.body-form > h1 a {
+    color: var(--orange-color);
+    cursor: pointer;
+}
+
+/* Efecto hover para h1 a */
+.body-form > h1 a:hover {
+    color: var(--white-color); /* Cambia a otro color al pasar el cursor */
+    transform: scale(1.1); /* Agranda el enlace ligeramente */
+}

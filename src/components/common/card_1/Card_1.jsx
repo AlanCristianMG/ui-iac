@@ -1,18 +1,27 @@
-import React from 'react'
-import './Card_1.css'
+import React from 'react';
+import './Card_1.css';
+import { useNavigate } from 'react-router-dom';
 
-function Card_1({text,textButton, onClick, target}) {
+function Card_1({ text, textButton, target }) {
+    const navigate = useNavigate();
+
+    const handleNavigate = (target) => {
+        navigate(target);
+    };
+
     return (
-        /* From Uiverse.io by alexruix */
         <div className="card_1">
             <div className="card_1-details">
                 <p className="card_1-text-body">{text}</p>
             </div>
-            <a href={target}>
-            <button className="card_1-button" onClick={onClick}>{textButton}</button>
-            </a>
+            <button
+                className="card_1-button"
+                onClick={() => handleNavigate(target)}
+            >
+                {textButton}
+            </button>
         </div>
-    )
+    );
 }
 
-export default Card_1
+export default Card_1;

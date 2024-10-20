@@ -1,0 +1,26 @@
+#Auth {
+    width: 100dvw;
+    height: 100dvh;
+    z-index: 1;
+    background-color: var(--black-color);
+    font-family: 'Nunito';
+}
+
+.bg-shape {
+    border-radius: 50%;
+    width: 220px;
+    height: 220px;
+    position: absolute;
+}
+
+.shape-one {
+    background-color: var(--orange-color);
+    top: 5dvh;
+    left: 25dvw;
+}
+
+.shape-two {
+    background-color: var(--strong-gray);
+    bottom: 5dvh;
+    right: 25dvw;
+}
