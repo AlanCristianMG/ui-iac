@@ -42,7 +42,7 @@ const Header = () => {
         <div className={`nav-content ${isMenuOpen ? 'show' : ''}`}>
           <div className="link-sections">
             <div className="section">
-              <a href="#home" className="home" onClick={closeMenu}>Home</a>
+              <a href="#home" className="home" onClick={closeMenu}>Home Edited</a>
             </div>
             <div className="section">
               <a href="#about" className="about" onClick={closeMenu}>About Us</a>
