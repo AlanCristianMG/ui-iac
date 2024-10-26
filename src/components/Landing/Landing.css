@@ -1,9 +1,9 @@
 @import "transition-style";
 .land-container {
     width: 100dvw;
-    /* height: 100dvh; */
     display: grid;
-    grid-template-rows:10dvh auto auto;
+    /* background-color: aqua; */
+    grid-template-rows:auto auto auto;
 }
 
 header {

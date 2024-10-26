@@ -30,7 +30,8 @@ function Register() {
                     text={"Password"}
                     type={"password"}
                 />
-                <Button_1 text={"Sign up"} />
+                <Button_1 
+                    text={"Sign up"} />
                 <h1>Or</h1>
                 <Button_2 />
                 <h1>Do have an account? <a onClick={()=>{

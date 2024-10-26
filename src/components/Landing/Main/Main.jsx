@@ -17,7 +17,7 @@ function Main() {
 
   useEffect(() => {
     const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
-  
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -26,40 +26,42 @@ function Main() {
           } else {
             entry.target.classList.add('animate__animated', 'animate__fadeInLeft');
           }
-          observer.unobserve(entry.target); 
+          observer.unobserve(entry.target);
         }
       });
     }, {
       threshold: 0.0001
     });
-  
+
     elementsToAnimate.forEach((element) => {
       observer.observe(element);
     });
-  
+
     return () => observer.disconnect(); // Limpiar el observer al desmontar el componente
   }, []);
-  
+
 
   return (
     <main>
-      <div className="brand-text">
-        <h1 className='animate__animated animate__slideInLeft animate__faster'>IAC</h1>
-        <h1 className='animate__animated animate__slideInLeft'>VIRTUAL</h1>
-        <h1 className='animate__animated animate__slideInLeft'>ASISSTANT</h1>
-        <div className="brand-info animate__animated animate__rotateInUpLeft">
-          <Card_1
-            text={data.text}
-            textButton={"Start now!"}
-            target={"/auth"}
-          />
+      <div className="cont-land">
+        <div className="brand-text">
+          <h1 className='title animate__animated animate__slideInLeft animate__faster'>IAC</h1>
+          <h1 className='title animate__animated animate__slideInLeft'>VIRTUAL</h1>
+          <h1 className='title animate__animated animate__slideInLeft'>ASISSTANT</h1>
+          <div className="brand-info animate__animated animate__rotateInUpLeft">
+            <Card_1
+              text={data.text}
+              textButton={"Start now!"}
+              target={"/auth"}
+            />
+          </div>
         </div>
-      </div>
-      <div className="brand-img">
-        <div className="bg-shape animate__animated animate__bounceInRight">
-          <div className="card-img">
-            <img src={Logo_g} alt="" />
-            <div className="talkbubble"></div>
+        <div className="brand-img">
+          <div className="bgl-shape animate__animated animate__bounceInRight">
+            <div className="card-img">
+              <img src={Logo_g} alt="" />
+              <div className="talkbubble"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -92,7 +94,7 @@ function Main() {
           <form action="">
             <div className="inp">
               <input type="text" placeholder='Write your name' />
-              <input type="email" placeholder='Write your email'/>
+              <input type="email" placeholder='Write your email' />
               <button>Send</button>
             </div>
             <textarea name="" id="" placeholder='Say hello!'></textarea>

@@ -2,8 +2,11 @@
 body {
   margin: 0;
   font-family: 'Nunito';
+  width: 100dvw;
 }
-
+html{
+  width: 100dvw;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -11,5 +14,5 @@ code {
 body, .App{
   max-width: 100dvw;
   overflow-x: hidden;
-  
+  /* background-color: aqua;   */
 }

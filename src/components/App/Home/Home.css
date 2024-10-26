@@ -1,0 +1,8 @@
+.Home{
+    width: 100dvw;
+    height:100dvh;
+    background-color: var(--white-color);
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}

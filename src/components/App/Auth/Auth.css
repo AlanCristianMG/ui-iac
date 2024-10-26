@@ -24,3 +24,41 @@
     bottom: 5dvh;
     right: 25dvw;
 }
+
+.back-button {
+    position: fixed;
+    top: 5dvh;
+    left: 5dvw;
+    z-index: 3;
+}
+
+@media(max-width:970px) {
+
+    #Login,
+    #Register {
+        top: 15dvh;
+        left: 25dvw;
+        right: 25dvw;
+        width: 50dvw;
+    }
+}
+@media(max-width:610px) {
+
+    #Login,
+    #Register {
+        top: 15dvh;
+        left: 10dvw;
+        /* right: 7.5dvw; */
+        width: 80dvw;
+    }
+}
+@media(max-width:410px) {
+
+    #Login,
+    #Register {
+        top: 15dvh;
+        left: 2.5dvw;
+        /* right: 7.5dvw; */
+        width: 95dvw;
+    }
+}

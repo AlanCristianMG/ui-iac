@@ -6,7 +6,7 @@ function Button_2() {
 
 
         /* From Uiverse.io by TreepDeep */
-        <button class="button google">
+        <button className="button google">
             <svg
                 viewBox="0 0 256 262"
                 preserveAspectRatio="xMidYMid"

@@ -1,0 +1,107 @@
+/* From Uiverse.io by 3bdel3ziz-T */ 
+.ModelSelector {
+    width: fit-content;
+    cursor: pointer;
+    position: fixed;
+    top: 2dvh;
+    right: 5dvw;
+    transition: 300ms;
+    color: white;
+    overflow: hidden;
+    
+  }
+  
+  .ModelSelector label{
+    width: 95%;
+  }
+
+  .selected {
+    background-color: var(--strong-gray);
+    padding: 5px;
+    margin-bottom: 3px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 100000;
+    font-size: 15px;
+    height: 4dvh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .arrow {
+    position: relative;
+    right: 0px;
+    height: 10px;
+    transform: rotate(-90deg);
+    width: 25px;
+    fill: white;
+    z-index: 100000;
+    transition: 300ms;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: var(--strong-gray);
+    position: relative;
+    top: -100px;
+    opacity: 0;
+    transition: 300ms;
+  }
+  
+  .ModelSelector:hover > .options {
+    opacity: 1;
+    top: 0;
+  }
+  
+  .ModelSelector:hover > .selected .arrow {
+    transform: rotate(0deg);
+  }
+  
+  .option {
+    border-radius: 5px;
+    padding: 5px;
+    transition: 300ms;
+    background-color: var(--strong-gray);
+    width: 150px;
+    font-size: 15px;
+  }
+  .option:hover {
+    background-color: var(--light-gray);
+  }
+  
+  .options input[type="radio"] {
+    display: none;
+  }
+  
+  .options label {
+    display: inline-block;
+  }
+  .options label::before {
+    content: attr(data-txt);
+  }
+  
+  .options input[type="radio"]:checked + label {
+    display: none;
+  }
+  
+  .options input[type="radio"]#all:checked + label {
+    display: none;
+  }
+  
+  .ModelSelector:has(.options input[type="radio"]#all:checked) .selected::before {
+    content: attr(data-default);
+  }
+  .ModelSelector:has(.options input[type="radio"]#option-1:checked) .selected::before {
+    content: attr(data-one);
+  }
+  .ModelSelector:has(.options input[type="radio"]#option-2:checked) .selected::before {
+    content: attr(data-two);
+  }
+  .ModelSelector:has(.options input[type="radio"]#option-3:checked) .selected::before {
+    content: attr(data-three);
+  }
+  

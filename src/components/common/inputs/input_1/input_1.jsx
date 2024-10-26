@@ -4,9 +4,9 @@ import './input_1.css'
 function Input_1({text, type, name, placeholder}) {
     return (
 
-        <div class="form__group field">
-            <input name={name} type={type} class="form__field" placeholder={placeholder} required/>
-            <label for={name} class="form__label">{text}</label>
+        <div className="form__group field">
+            <input name={name} type={type} className="form__field" placeholder={placeholder} required/>
+            <label htmlFor={name} className="form__label">{text}</label>
         </div>
 
 

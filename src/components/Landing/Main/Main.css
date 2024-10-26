@@ -1,8 +1,15 @@
 main {
     display: grid;
     grid-template-rows: auto auto;
-    grid-template-columns: 60dvw 40dvw;
-    padding-bottom: 0dvw;
+    grid-template-columns: auto;
+    /* padding-bottom: 0dvw; */
+    margin-top: 10dvh;
+    width: 100dvw;
+}
+
+.cont-land{
+    display: grid;
+    grid-template-columns: auto auto;
 }
 
 .brand-text {
@@ -70,26 +77,29 @@ main {
     font-family: 'Oswald';
     color: var(--strong-gray);
     font-size: clamp(3.5rem, 4.5rem, 5rem);
+    margin: 0 auto;
+    width: 80dvw;
+    margin: 0 10dvw;
+
 }
 
 .main-sections>p {
     font-family: 'Nunito';
-    width: 60dvw;
-    margin: 0 auto;
+    width: 80dvw;
+    padding: 0 10dvw;
     font-weight: 700;
     font-size: clamp(1.1rem, 1.2rem, 1.5rem);
     color: var(--strong-gray);
 }
 
 .main-sections>img {
-    width: 40dvw;
-    margin: 0 auto;
+    width: 50dvw;
+    margin: 0 25dvw;
 }
 
 .main-sections>section {
     background-color: var(--white-color);
     margin: 10dvh 0;
-    /* background-color: aqua; */
 }
 
 .main-sections>section>div>h1 {
@@ -132,9 +142,11 @@ main {
 .vision img {
     width: 15dvw;
 }
-.values{
+
+.values {
     padding: 5dvh 10dvw;
 }
+
 .values>.valores>.val {
     margin: 1dvw;
     font-family: 'Oswald';
@@ -153,41 +165,47 @@ main {
     grid-template-columns: auto auto auto;
 }
 
-#contact{
+#contact {
     width: 100dvw;
-    background-color:white;
+    background-color: white;
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto auto;   
+    grid-template-rows: auto auto;
     margin: 0;
-    padding-bottom: 5dvh; 
+    padding-bottom: 5dvh;
 }
-#contact>h1{
+
+#contact>h1 {
     font-family: 'Oswald';
     color: var(--strong-gray);
     font-size: 4rem;
     /* background-color: antiquewhite; */
+    width: 99dvw;
 }
-#contact>form{
-    padding: 2dvh 25dvw;
+
+#contact>form {
+    padding: 2dvh 0;
     display: grid;
     grid-template-columns: auto auto;
     gap: 3dvw;
 }
 
-.inp{
+.inp {
     display: grid;
     grid-template-rows: auto auto auto;
     gap: 20px;
     border-color: rgb(169, 169, 169);
 }
-.inp>input, .inp>button{
+
+.inp>input,
+.inp>button {
     width: 25dvw;
     height: 30px;
     border-radius: 10px;
 
 }
-.inp button{
+
+.inp button {
     background-color: var(--strong-gray);
     color: var(--white-color);
     border: solid var(--strong-gray);
@@ -196,7 +214,8 @@ main {
     font-size: 1.5rem;
     height: 50px;
 }
-#contact textarea{
+
+#contact textarea {
     width: 30dvw;
     border-radius: 10px;
 }
@@ -208,20 +227,27 @@ main {
 }
 
 @media(max-width: 1020px) {
-    main {
+    .cont-land {
         display: grid;
         grid-template-columns: auto;
         grid-template-rows: auto auto;
+        width: 100dvw;
+    }
+
+    .main-sections>img {
+        width: 80dvw;
+        margin: 0 10dvw;
     }
 
     .brand-text {
-        /* background-color: aqua; */
-        /* margin: auto; */
+        /* background-color: aquamarine; */
+        margin: auto;
 
     }
 
-    .brand-text>h1 {
+    .brand-text>.title {
         font-size: 6.8rem;
+        /* z-index: 1; */
     }
 
     .brand-img {
@@ -234,5 +260,61 @@ main {
 
     .brand-img .card-img img {
         width: 85dvw;
+    }
+}
+
+@media(max-width:780px) {
+
+    #about>.mision,
+    .values {
+        /* margin-right: 60dvw; */
+        /* background-color: aqua; */
+        width: 85dvw;
+        padding: 1dvh 2dvw;
+    }
+    #about h1{
+        font-size: 2.5rem;
+        width: 70dvw;
+    }
+    #about p{
+        font-size: 1.2rem;
+        width: 70dvw;
+    }
+    #about img{
+        width: 35dvw;
+    }
+
+    #about .val{
+        font-size: 1.3rem;
+    }
+    .valores {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        grid-template-columns: auto auto;
+    }
+
+}
+
+@media(max-width:580px) {
+    .brand-text {
+        padding: 0;
+    }
+
+    .brand-text>.title {
+        font-size: 5.5rem;
+    }
+
+    .card_1-text-body {
+        font-size: 1rem;
+    }
+}
+
+@media(max-width:440px) {
+    .brand-text>.title {
+        font-size: 4.8rem;
+    }
+
+    .card_1-text-body {
+        font-size: 0.9rem;
     }
 }
