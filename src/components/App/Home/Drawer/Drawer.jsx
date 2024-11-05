@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import './Drawer.css';
-import ArrowRight from '../../../../assets/img/icons/arrow-right.png'
-import ArrowLeft from '../../../../assets/img/icons/arrow-left.png'
-import logo from '../../../../assets/img/icons/logo_gray.png'
-import home from '../../../../assets/img/icons/home.png'
-import settings from '../../../../assets/img/icons/settings.png'
-import logout from '../../../../assets/img/icons/logout.png'
-
+import ArrowRight from '../../../../assets/img/icons/arrow-right.png';
+import ArrowLeft from '../../../../assets/img/icons/arrow-left.png';
+import logo from '../../../../assets/img/icons/logo_gray.png';
+import conversationIcon from '../../../../assets/img/icons/conversation.png'; // Asegúrate de tener un ícono para Nueva Conversación
+import historyIcon from '../../../../assets/img/icons/history.png'; // Asegúrate de tener un ícono para Historia
 
 function Drawer() {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,15 +16,14 @@ function Drawer() {
     return (
         <div className={`drawer ${isOpen ? 'open' : ''}`}>
             <button className="drawer-toggle" onClick={toggleDrawer}>
-                {isOpen ? <img src={ArrowLeft} alt="" /> : <img src={ArrowRight} alt="" />}
+                {isOpen ? <img src={ArrowLeft} alt="Cerrar menú" /> : <img src={ArrowRight} alt="Abrir menú" />}
             </button>
             <div className="drawer-content">
-                <img src={logo} alt="" />
+                <img src={logo} alt="Logo" />
                 <h2>IAC Assistant</h2>
                 <ul>
-                    <li><a href=""><img src={home} alt="" />Home</a></li>
-                    <li><a href=""><img src={settings} alt="" />Settings</a></li>
-                    <li className='logout'><a href=""><img src={logout} alt="" />Logout</a></li>
+                    <li><a href=""><img src={conversationIcon} alt="Nueva Conversación" />Nueva Conversación</a></li>
+                    <li><a href=""><img src={historyIcon} alt="Historia" />Historial</a></li>
                 </ul>
             </div>
         </div>

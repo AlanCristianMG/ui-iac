@@ -1,7 +1,9 @@
-// Chat.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import './Chat.css';
 import sendIcon from '../../../../assets/img/icons/send.png';
+import homeIcon from '../../../../assets/img/icons/home.png';
+import settingsIcon from '../../../../assets/img/icons/settings.png';
+import logoutIcon from '../../../../assets/img/icons/logout.png';
 import ModelSelector from '../ModelSelector/ModelSelector';
 
 function Chat() {
@@ -65,12 +67,11 @@ function Chat() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           prompt: message.trim(),
-          modelId: selectedModel, // Utiliza el modelo seleccionado
+          modelId: selectedModel,
         }),
       });
       
       const data = await response.json();
-      console.log(data)
       if (typeof data.response === 'string') {
         const responseMessages = data.response
           .split(',')
@@ -95,8 +96,34 @@ function Chat() {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      if (e.shiftKey) {
+        // Si Shift + Enter se presiona, añadir un salto de línea al mensaje.
+        setMessage(prev => prev + '\n');
+      } else {
+        // Si solo Enter se presiona, enviar el mensaje.
+        e.preventDefault(); // Prevenir el comportamiento por defecto de Enter (agregar un nuevo <br> en el textarea)
+        handleSendMessage();
+      }
+    }
+  };
+
   return (
     <div className="Chat">
+      {/* Barra superior con accesos directos */}
+      <div className="chat-header">
+        <div className="header-item">
+          <a href="/home"><img src={homeIcon} alt="Home" />Home</a>
+        </div>
+        <div className="header-item">
+          <a href="/settings"><img src={settingsIcon} alt="Settings" />Settings</a>
+        </div>
+        <div className="header-item">
+          <a href="/logout"><img src={logoutIcon} alt="Logout" />Logout</a>
+        </div>
+      </div>
+      {/* Selector de modelos de IA */}
       <ModelSelector 
         models={models} 
         selectedModel={selectedModel}
@@ -128,6 +155,7 @@ function Chat() {
           placeholder="Send a message..."
           value={message}
           onChange={handleMessageChange}
+          onKeyDown={handleKeyDown} // Añadir el manejador de eventos
           rows={1}
         />
         <button 
