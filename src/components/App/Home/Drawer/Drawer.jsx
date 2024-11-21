@@ -1,33 +1,77 @@
-import React, { useState } from 'react'; 
-import './Drawer.css';
-import ArrowRight from '../../../../assets/img/icons/arrow-right.png';
-import ArrowLeft from '../../../../assets/img/icons/arrow-left.png';
-import logo from '../../../../assets/img/icons/logo_gray.png';
-import conversationIcon from '../../../../assets/img/icons/conversation.png'; // Asegúrate de tener un ícono para Nueva Conversación
-import historyIcon from '../../../../assets/img/icons/history.png'; // Asegúrate de tener un ícono para Historia
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import "./Drawer.css";
 
 function Drawer() {
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
-    const toggleDrawer = () => {
-        setIsOpen(!isOpen);
-    };
+  useEffect(() => {
+    const home = document.querySelector(".Home");
+    if (home) {
+      home.style.gridTemplateColumns = isOpen ? "20dvw auto" : "0 auto";
+    }
+  }, [isOpen]);
 
-    return (
-        <div className={`drawer ${isOpen ? 'open' : ''}`}>
-            <button className="drawer-toggle" onClick={toggleDrawer}>
-                {isOpen ? <img src={ArrowLeft} alt="Cerrar menú" /> : <img src={ArrowRight} alt="Abrir menú" />}
-            </button>
-            <div className="drawer-content">
-                <img src={logo} alt="Logo" />
-                <h2>IAC Assistant</h2>
-                <ul>
-                    <li><a href=""><img src={conversationIcon} alt="Nueva Conversación" />Nueva Conversación</a></li>
-                    <li><a href=""><img src={historyIcon} alt="Historia" />Historial</a></li>
-                </ul>
-            </div>
+  const handleToggle = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  return (
+    <>
+      {!isOpen && (
+        <motion.button 
+          className="openBtn"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ type: "spring", stiffness: 300 }}
+          onClick={handleToggle}
+        >
+          <i className="fa-solid fa-bars"></i>
+        </motion.button>
+      )}
+      
+      <motion.div 
+        className={`drawer ${isOpen ? "open" : "closed"}`}
+        initial={{ width: 0 }}
+        animate={{ 
+          width: isOpen ? "20dvw" : 0,
+          transition: { 
+            type: "tween", 
+            duration: 0.3 
+          }
+        }}
+        exit={{ width: 0 }}
+      >
+        <div className="head-drawer">
+          <motion.button
+            className="drawer-btn"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleToggle}
+          >
+            <i className={`fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
+          </motion.button>
         </div>
-    );
+        
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div 
+              className="content-drawer"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ 
+                delay: 0.2,
+                type: "spring", 
+                stiffness: 100 
+              }}
+            >
+              {/* Add drawer content here */}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </>
+  );
 }
 
 export default Drawer;

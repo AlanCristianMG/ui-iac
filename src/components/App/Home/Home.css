@@ -1,8 +1,17 @@
+
 .Home{
-    width: 100dvw;
+    width: 10 0dvw;
     height:100dvh;
-    background-color: var(--white-color);
+    max-width: 100dvw;
+    min-width: none;
+    background-color: var(--black-s);
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: 20dvw auto;
     grid-template-rows: auto;
+    margin: 0;
+    padding: 0;
 }
+
+
+
+

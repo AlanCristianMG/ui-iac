@@ -1,84 +1,52 @@
 .drawer {
     position: fixed;
     top: 0;
-    left: -180px;
-    width: 190px;
-    height: 100dvh;
-    background-color: var(--strong-gray);
-    transition: left 0.3s ease-in-out;
-    z-index: 1000;
-    margin: 0;
-    font-family: 'Nunito';
-    color: var(--white-color);
-}
-@media(max-width:820px){
-    .drawer{
-        width: 170px;
-        /* background-color: aqua; */
-    }
-}
-.drawer.open {
     left: 0;
-}
-
-.drawer-toggle {
-    position: absolute;
-    top: 0dvh;
-    right: -75px;
-    width: 80px;
-    height: 100dvh;
-    border-radius: 0 5% 5% 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--strong-gray);
+    height: 100vh;
+    background-color: var(--black-s);
+    overflow-x: hidden;
+    z-index: 100;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+  }
+  
+  .drawer-btn {
+    background-color: transparent;
     border: none;
     cursor: pointer;
-}
-.drawer-toggle img{
-    width: 50px;
-}
-
-.drawer-content {
-    padding: 20px;
+    padding: 15px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-content: center;
-    align-items: center;
-}
-.drawer-content>img{
-    width: 60%;
-    margin: 0px 20%;
-}
-
-.drawer-content h2 {
-    width: 70%;
-    margin: 0 15%;
-    /* background-color: aqua; */
-    margin-bottom: 15px;
-    font-family: 'Oswald';
-}
-
-.drawer-content ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.drawer-content li {
-    margin: 5dvh 0;
-    width: 100%;
-    /* background-color: aquamarine; */
-}
-.drawer-content a{
-    text-decoration: none;
-    color: var(--white-color);
+    transition: all 0.3s ease;
+  }
+  
+  .drawer-btn i {
+    color: #f7f9fd;
+    font-size: 30px;
+    transition: transform 0.3s ease;
+  }
+  
+  .drawer-btn:hover i {
+    transform: scale(1.1);
+  }
+  
+  .openBtn {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    background-color: rgba(65, 66, 66, 0.7);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    /* background-color: aqua; */
-    width: 13dvw
-}
-.drawer-content a>img{
-    width: 30px;
-}
+    justify-content: center;
+    z-index: 50;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+  }
+  
+  .openBtn i {
+    color: #f7f9fd;
+    font-size: 24px;
+  }

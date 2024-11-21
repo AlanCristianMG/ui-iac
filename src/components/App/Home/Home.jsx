@@ -6,9 +6,9 @@ import Drawer from './Drawer/Drawer'
 function Home() {
   return (
     <div className="Home">
-      <Drawer/>
-      <Chat/>
-    </div>
+      <Drawer />
+      <Chat />
+    </div>  
   )
 }
 
