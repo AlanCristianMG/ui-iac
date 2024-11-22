@@ -16,7 +16,7 @@
   }
 
   .selected {
-    background-color: var(--strong-gray);
+    background-color: var(--orange-color);
     padding: 5px;
     margin-bottom: 3px;
     border-radius: 5px;
@@ -45,7 +45,7 @@
     flex-direction: column;
     border-radius: 5px;
     padding: 5px;
-    background-color: var(--strong-gray);
+    background-color: #da771cc0;
     position: relative;
     top: -100px;
     opacity: 0;
@@ -65,12 +65,12 @@
     border-radius: 5px;
     padding: 5px;
     transition: 300ms;
-    background-color: var(--strong-gray);
+    background-color: transparent;
     width: 150px;
     font-size: 15px;
   }
   .option:hover {
-    background-color: var(--light-gray);
+    background-color: #eb7d16e5;
   }
   
   .options input[type="radio"] {
