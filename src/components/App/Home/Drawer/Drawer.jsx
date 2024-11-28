@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom"; // Importa useNavigate
 import "./Drawer.css";
 
 function Drawer() {
   const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate(); // Define navigate
 
   useEffect(() => {
     const home = document.querySelector(".Home");
@@ -14,6 +16,12 @@ function Drawer() {
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    console.log("Saliendo...");
+    // Aquí puedes agregar lógica para cerrar sesión si es necesario
+    navigate("/auth"); // Redirige a la pantalla de autenticación
   };
 
   return (
@@ -65,7 +73,9 @@ function Drawer() {
                 stiffness: 100 
               }}
             >
-              {/* Add drawer content here */}
+              <button className="logout-btn" onClick={handleLogout}>
+                Salir
+              </button>
             </motion.div>
           )}
         </AnimatePresence>

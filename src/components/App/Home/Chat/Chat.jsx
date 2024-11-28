@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom"; // Si usas react-router
+import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import "./Chat.css";
 import sendIcon from "../../../../assets/img/icons/send.png";
 import ModelSelector from "../ModelSelector/ModelSelector";
@@ -12,12 +14,31 @@ function Chat() {
   );
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
-  // Auto scroll al final del chat
-  const scrollToBottom = () =>
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        navigate("/login"); // Redirige a la página de inicio de sesión si no hay usuario autenticado
+      }
+    });
 
-  useEffect(scrollToBottom, [responses]);
+    return () => unsubscribe();
+  }, [navigate]);
+
+  const handleGoogleSignIn = async () => {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.error("Error during Google Sign-In", error);
+    }
+  };
 
   useEffect(() => {
     const fetchModels = async () => {
@@ -77,6 +98,15 @@ function Chat() {
     }
   };
 
+  if (!user) {
+    return (
+      <div className="auth-required">
+        <p>Please sign in with Google to access the chat.</p>
+        <button onClick={handleGoogleSignIn}>Sign in with Google</button>
+      </div>
+    );
+  }
+
   return (
     <div className="Chat">
       <ModelSelector
@@ -134,3 +164,4 @@ function Chat() {
 }
 
 export default Chat;
+
