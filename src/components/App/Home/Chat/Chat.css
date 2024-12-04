@@ -7,7 +7,7 @@
   justify-content: space-between;
   height: 96dvh;
   background-color: var(--black-l);
-  padding: 16px;
+  padding: 16px 15dvw;
   /* border-radius: 8px; */
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
