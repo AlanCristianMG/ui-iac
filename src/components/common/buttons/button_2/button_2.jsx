@@ -1,12 +1,26 @@
-import React from 'react'
-import './button_2.css'
+import React from 'react';
+import './button_2.css';
+import { auth, googleProvider, signInWithPopup } from '../../../../config/firebaseConfig';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 
 function Button_2() {
+    const navigate = useNavigate(); // Inicializa el hook para la navegación
+
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                console.log('Usuario autenticado con Google:', result.user);
+
+                // Redirige a la página de inicio después del inicio de sesión exitoso
+                navigate('/home'); // Redirección a la página 'home'
+            })
+            .catch((error) => {
+                console.error('Error al autenticar con Google:', error);
+            });
+    };
+
     return (
-
-
-        /* From Uiverse.io by TreepDeep */
-        <button className="button google">
+        <button className="button google" onClick={handleGoogleSignIn}>
             <svg
                 viewBox="0 0 256 262"
                 preserveAspectRatio="xMidYMid"
@@ -31,9 +45,7 @@ function Button_2() {
             </svg>
             Continue with Google
         </button>
-
-
-    )
+    );
 }
 
-export default Button_2
+export default Button_2;

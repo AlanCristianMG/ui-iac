@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import "./Chat.css";
 import ModelSelector from "../ModelSelector/ModelSelector";
 
@@ -13,19 +15,40 @@ function Chat() {
   const [deviceAvailable, setDeviceAvailable] = useState(false);
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   const scrollToBottom = () =>
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
 
-  useEffect(scrollToBottom, [responses]);
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        navigate("/login");
+      }
+    });
+    return () => unsubscribe();
+  }, [navigate]);
+
+  const handleGoogleSignIn = async () => {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.error("Error during Google Sign-In", error);
+    }
+  };
 
   const checkAudioDevices = async () => {
     try {
       const devices = await navigator.mediaDevices.enumerateDevices();
       const hasAudioDevice = devices.some(device => device.kind === 'audioinput');
-      
       setDeviceAvailable(hasAudioDevice);
-      
+
       if (!hasAudioDevice) {
         addResponse("No se detectó ningún micrófono en tu dispositivo. Por favor, conecta un micrófono y recarga la página.", true);
         return false;
@@ -50,13 +73,13 @@ function Chat() {
           autoGainControl: true
         } 
       });
-      
+
       stream.getTracks().forEach(track => track.stop());
       setHasPermission(true);
       return true;
     } catch (error) {
       console.error('Error al solicitar permiso del micrófono:', error);
-      
+
       if (error.name === 'NotFoundError') {
         addResponse("No se encontró ningún micrófono. Por favor, verifica que tu micrófono esté conectado correctamente.", true);
         setDeviceAvailable(false);
@@ -67,59 +90,11 @@ function Chat() {
       } else {
         addResponse("Hubo un error al acceder al micrófono. " + error.message, true);
       }
-      
+
       setHasPermission(false);
       return false;
     }
   };
-
-  useEffect(() => {
-    checkAudioDevices();
-
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-      recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.continuous = true;
-      recognitionRef.current.interimResults = true;
-      recognitionRef.current.lang = 'es-ES';
-
-      recognitionRef.current.onstart = () => {
-        setIsRecording(true);
-      };
-
-      recognitionRef.current.onend = () => {
-        setIsRecording(false);
-      };
-
-      recognitionRef.current.onresult = (event) => {
-        const transcript = Array.from(event.results)
-          .map(result => result[0].transcript)
-          .join('');
-        setMessage(transcript);
-      };
-
-      recognitionRef.current.onerror = (event) => {
-        console.error('Error en reconocimiento de voz:', event.error);
-        if (event.error === 'not-allowed') {
-          setHasPermission(false);
-          addResponse("No se ha concedido permiso para usar el micrófono.", true);
-        } else if (event.error === 'audio-capture') {
-          setDeviceAvailable(false);
-          addResponse("No se detectó ningún micrófono. Por favor, verifica tu hardware.", true);
-        }
-        setIsRecording(false);
-      };
-
-      navigator.mediaDevices?.addEventListener('devicechange', checkAudioDevices);
-    }
-
-    return () => {
-      if (recognitionRef.current) {
-        recognitionRef.current.stop();
-      }
-      navigator.mediaDevices?.removeEventListener('devicechange', checkAudioDevices);
-    };
-  }, []);
 
   useEffect(() => {
     const fetchModels = async () => {
@@ -149,8 +124,7 @@ function Chat() {
     setIsLoading(true);
 
     try {
-      // const response = await fetch("http://localhost:1234/bedrock/invoke", {
-        const response = await fetch("https://54.234.225.:1234/bedrock/invoke", {
+      const response = await fetch("http://localhost:1234/bedrock/invoke", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -170,13 +144,6 @@ function Chat() {
       addResponse("Error sending message. Please try again.", true);
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
     }
   };
 
@@ -217,6 +184,22 @@ function Chat() {
     if (!hasPermission) return "Click para permitir el micrófono";
     return "Mantén presionado para hablar";
   };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
+
+  if (!user) {
+    return (
+      <div className="auth-required">
+        <p>Please sign in with Google to access the chat.</p>
+        <button onClick={handleGoogleSignIn}>Sign in with Google</button>
+      </div>
+    );
+  }
 
   return (
     <div className="Chat">
@@ -265,17 +248,16 @@ function Chat() {
         </button>
         <button
           className={`voice-button btn-send ${isRecording ? 'recording' : ''}`}
-          onMouseDown={handleVoiceStart}
-          onMouseUp={handleVoiceEnd}
-          onMouseLeave={handleVoiceEnd}
-          disabled={!deviceAvailable}
           title={getMicrophoneButtonTitle()}
+          onTouchStart={handleVoiceStart}
+          onMouseDown={handleVoiceStart}
+          onTouchEnd={handleVoiceEnd}
+          onMouseUp={handleVoiceEnd}
+          disabled={isLoading}
         >
           <i
             className="fa-solid fa-microphone fa-2xl"
-            style={{ 
-              color: isRecording ? "#ff0000" : deviceAvailable ? "#ffffff" : "#666666" 
-            }}
+            style={{ color: "#ffffff" }}
           ></i>
         </button>
       </div>
