@@ -345,7 +345,7 @@ main {
     width: 80%;
 }
 
-.manual-download {
+.manual-view {
     font-family: 'Oswald', sans-serif;
     font-size: 1.5rem;
     color: var(--white-color);
@@ -354,12 +354,15 @@ main {
     border-radius: 10px;
     text-decoration: none;
     display: inline-block;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px; /* Añadir sombra para efecto de profundidad */
 }
 
-.manual-download:hover {
+.manual-view:hover {
     background-color: var(--light-gray);
     color: var(--strong-gray);
+    transform: scale(1.05); /* Efecto de agrandar el botón al pasar el ratón */
 }
 
 /* Media Queries para que sea responsive */
@@ -378,7 +381,7 @@ main {
         width: 90%;
     }
 
-    .manual-download {
+    .manual-view {
         font-size: 1.3rem;
         padding: 1dvh 1.8dvw;
     }
@@ -398,7 +401,7 @@ main {
         width: 90%;
     }
 
-    .manual-download {
+    .manual-view {
         font-size: 1.2rem;
         padding: 0.8dvh 1.6dvw;
     }
@@ -418,12 +421,8 @@ main {
         width: 95%;
     }
 
-    .manual-download {
+    .manual-view {
         font-size: 1.1rem;
         padding: 0.6dvh 1.4dvw;
     }
 }
-
-
-
-

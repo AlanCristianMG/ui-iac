@@ -91,9 +91,10 @@ function Main() {
         <section id='manual'>
   <h1>Manual de Usuario</h1>
   <p>Consulta y descarga nuestro manual de usuario para obtener información detallada sobre cómo aprovechar al máximo IAC.</p>
-  <a href="/pdf/Manualusuario.pdf" download className="manual-download">
-    Descargar Manual de Usuario
-  </a>
+  <a href="https://drive.google.com/file/d/1YnV4L85KuvpFZvMAcaW85MsxMBIOOuKB/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+  Ver Manual de Usuario
+</a>
+
 </section>
 
         <section id='contact'>
