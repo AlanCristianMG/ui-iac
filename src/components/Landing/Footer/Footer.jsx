@@ -4,7 +4,7 @@ import './Footer.css'
 function Footer() {
   return (
     <footer>
-        <p>All rights reserved@IAC</p>
+        <p>Derechos Reservados por @IAC</p>
     </footer>
   )
 }

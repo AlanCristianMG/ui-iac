@@ -42,13 +42,13 @@ const Header = () => {
         <div className={`nav-content ${isMenuOpen ? 'show' : ''}`}>
           <div className="link-sections">
             <div className="section">
-              <a href="#home" className="home" onClick={closeMenu}>Home</a>
+              <a href="#home" className="home" onClick={closeMenu}>Inicio</a>
             </div>
             <div className="section">
-              <a href="#about" className="about" onClick={closeMenu}>About Us</a>
+              <a href="#about" className="about" onClick={closeMenu}>Sobre Nosotros</a>
             </div>
             <div className="section">
-              <a href="#contact" className="contact" onClick={closeMenu}>Contact</a>
+              <a href="#contact" className="contact" onClick={closeMenu}>Contacto</a>
             </div>
           </div>
           <div className="social">
@@ -64,10 +64,7 @@ const Header = () => {
               href="https://www.github.com" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
               <img src={githubIcon} alt="GitHub" />
             </a>
-            <a  className='animate__animated animate__backInRight animate__fast'  
-              href="mailto:example@gmail.com" aria-label="Gmail">
-              <img src={gmailIcon} alt="Gmail" />
-            </a>
+
           </div>
         </div>
       </nav>
