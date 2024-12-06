@@ -48,9 +48,11 @@ function Chat() {
       recognitionRef.current = new SpeechRecognition();
       recognitionRef.current.continuous = true;
       recognitionRef.current.interimResults = true;
+      recognitionRef.current.lang = 'es-ES'; // Configura el idioma español
       
       recognitionRef.current.onstart = () => {
         setIsRecording(true);
+        console.log('Speech recognition started');
       };
       
       recognitionRef.current.onresult = (event) => {
@@ -64,15 +66,32 @@ function Chat() {
       
       recognitionRef.current.onend = () => {
         setIsRecording(false);
+        console.log('Speech recognition ended');
       };
       
       recognitionRef.current.onerror = (event) => {
-        console.error('Speech recognition error:', event.error);
-        addResponse(`Error in speech recognition: ${event.error}`, true);
+        console.error('Speech recognition error details:', {
+          error: event.error,
+          message: event.message
+        });
+        
+        const errorMessages = {
+          'no-speech': 'No se detectó ningún discurso. Intenta de nuevo.',
+          'aborted': 'Reconocimiento de voz cancelado.',
+          'audio-capture': 'No se pudo capturar audio. Verifica tu micrófono.',
+          'network': 'Error de red al realizar el reconocimiento de voz.',
+          'not-allowed': 'No se permitió el acceso al micrófono. Revisa los permisos.',
+          'service-not-allowed': 'Servicio de reconocimiento de voz no permitido.'
+        };
+
+        const errorMessage = errorMessages[event.error] || 
+          `Error de reconocimiento de voz: ${event.error}`;
+        
+        addResponse(errorMessage, true);
         setIsRecording(false);
       };
     } else {
-      addResponse("Speech recognition not supported in this browser", true);
+      addResponse("El navegador no soporta reconocimiento de voz", true);
     }
   }, []);
 
@@ -227,6 +246,17 @@ function Chat() {
 
   // Voice recognition start
   const handleVoiceStart = async () => {
+    if (!recognitionRef.current) {
+      addResponse("Reconocimiento de voz no inicializado", true);
+      return;
+    }
+
+    if (isRecording) {
+      // Si ya está grabando, detenerlo
+      recognitionRef.current.stop();
+      return;
+    }
+
     if (!deviceAvailable) {
       const hasDevice = await checkAudioDevices();
       if (!hasDevice) return;
@@ -237,15 +267,11 @@ function Chat() {
       if (!granted) return;
     }
 
-    if (recognitionRef.current) {
-      try {
-        recognitionRef.current.start();
-      } catch (error) {
-        console.error('Voice recognition start error:', error);
-        addResponse("Error starting voice recognition. Please try again.", true);
-      }
-    } else {
-      addResponse("Your browser does not support voice recognition.", true);
+    try {
+      recognitionRef.current.start();
+    } catch (error) {
+      console.error('Error al iniciar reconocimiento de voz:', error);
+      addResponse("No se pudo iniciar el reconocimiento de voz. Por favor, reintenta.", true);
     }
   };
 
