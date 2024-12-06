@@ -72,7 +72,7 @@ function Drawer() {
                 stiffness: 100,
               }}
             >
-              <img src={LOGO} alt="" style={{width:"80%", margin:"100% 10%"}} />
+              <img src={LOGO} alt="" style={{width:"80%", margin:"90% 10%"}} />
             </motion.div>
           )}
         </AnimatePresence>
