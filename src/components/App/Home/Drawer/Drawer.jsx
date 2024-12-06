@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom"; // Importa useNavigate
 import "./Drawer.css";
+import LOGO from "../../../../assets/img/icons/logo.png"
 
 function Drawer() {
   const [isOpen, setIsOpen] = useState(true);
@@ -59,7 +60,22 @@ function Drawer() {
             <i className={`fa-solid ${isOpen ? "fa-xmark" : "fa-bars"}`}></i>
           </motion.button>
         </div>
-
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="content-drawer"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{
+                delay: 0.2,
+                type: "spring",
+                stiffness: 100,
+              }}
+            >
+              <img src={LOGO} alt="" style={{width:"80%", margin:"130% 10%"}} />
+            </motion.div>
+          )}
+        </AnimatePresence>
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -81,7 +97,9 @@ function Drawer() {
             </motion.div>
           )}
         </AnimatePresence>
+        
       </motion.div>
+
     </>
   );
 }
